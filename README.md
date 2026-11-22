@@ -14,7 +14,7 @@
 *Real Buyers • Real Posts • Instagram-Verified Cashback • Crownd Score Unlock System • FastAPI + Supabase Backend*
 
 **🔴 LIVE DEMO** — https://crownd3.onrender.com/
-**📂 REPO** — https://github.com/ju-pyjanvi/Crownd
+**📂 REPO** — https://github.com/ju-pyjanvi/Crownd](https://github.com/relandhruvi/Crownd_LeanIn
 
 
 **PPT** - https://drive.google.com/file/d/1f2fkKyGfWk420u_qOf79_BoVtlaq075y/view?usp=sharing
