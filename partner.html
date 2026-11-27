@@ -6,41 +6,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Crownd — Partner with us</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --mint:    #EAF7F4;
-    --maroon:  #A8284C;
-    --sage:    #7A8C6A;
-    --warm:    #FDF6F0;
-    --dark:    #1C2221;
-    --muted:   #5A6460;
-    --pink:    #F0997B;
-    --teal:    #5DCAA5;
-    --amber:   #FAC775;
-    --lavender:#AFA9EC;
-    --cream:   #F9F4EE;
-    --error:   #C24545;
+    --mint:         #EAF7F4;
+    --maroon:       #A8284C;
+    --maroon-dark:  #7A1832;
+    --maroon-deep:  #560F23;
+    --blush:        #FADCE4;
+    --blush-light:  #FDF1F4;
+    --sage:         #7A8C6A;
+    --sage-dark:    #5A6B4C;
+    --warm:         #FDF6F0;
+    --dark:         #1C2221;
+    --muted:        #5D3A44;
+    --pink:         #F0997B;
+    --teal:         #5DCAA5;
+    --amber:        #FAC775;
+    --lavender:     #AFA9EC;
+    --cream:        #F9F4EE;
+    --error:        #C24545;
   }
 
   html { scroll-behavior: smooth; }
 
   body {
     font-family: 'DM Sans', sans-serif;
-    background: var(--mint);
+    background: linear-gradient(135deg, #FADCE4 0%, #FDF1F4 48%, #F5CCD7 100%);
     color: var(--dark);
     overflow-x: hidden;
     min-height: 100vh;
   }
 
-  /* ── BLOBS (matches index.html) ── */
+  /* ── INVERTED RED HALO BLOBS ── */
   .blob-field { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-  .blob { position: absolute; border-radius: 50%; opacity: 0.55; filter: blur(95px); animation: blobdrift 18s ease-in-out infinite alternate; }
-  .blob-1 { width: 520px; height: 520px; top: -120px; right: -80px; background: radial-gradient(circle, var(--pink), var(--amber)); animation-delay: 0s; }
-  .blob-2 { width: 380px; height: 380px; bottom: 20%; right: 10%; background: radial-gradient(circle, var(--teal), var(--lavender)); animation-delay: -6s; }
-  .blob-3 { width: 280px; height: 280px; top: 50%; left: -60px; background: radial-gradient(circle, var(--amber), var(--pink)); animation-delay: -12s; }
+  .blob { position: absolute; border-radius: 50%; opacity: 0.6; filter: blur(95px); animation: blobdrift 18s ease-in-out infinite alternate; }
+  .blob-1 { width: 540px; height: 540px; top: -130px; right: -90px; background: radial-gradient(circle, rgba(168,40,76,0.42), rgba(240,153,123,0.28)); animation-delay: 0s; }
+  .blob-2 { width: 420px; height: 420px; bottom: 12%; right: 8%; background: radial-gradient(circle, rgba(122,24,50,0.34), rgba(168,40,76,0.18)); animation-delay: -6s; }
+  .blob-3 { width: 340px; height: 340px; top: 48%; left: -80px; background: radial-gradient(circle, rgba(168,40,76,0.32), rgba(250,199,117,0.16)); animation-delay: -12s; }
   @keyframes blobdrift { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(30px,20px) scale(1.08); } }
 
   /* ── NAV ── */
@@ -48,44 +53,87 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 18px 48px;
-    background: rgba(234, 247, 244, 0.82);
+    background: rgba(253, 241, 244, 0.86);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(122,140,106,0.12);
+    border-bottom: 1px solid rgba(168,40,76,0.14);
   }
   .logo { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 26px; letter-spacing: -0.5px; text-decoration: none; }
   .logo span:first-child { color: var(--maroon); }
   .logo span:last-child  { color: var(--sage); }
+
+  .nav-actions {
+    display: flex; align-items: center; gap: 18px;
+  }
   .nav-back {
     font-size: 13px; font-weight: 600; color: var(--muted); text-decoration: none;
     display: flex; align-items: center; gap: 6px; transition: color 0.18s;
   }
-  .nav-back:hover { color: var(--dark); }
+  .nav-back:hover { color: var(--maroon); }
+
+  .nav-dash-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-size: 13px; font-weight: 700;
+    padding: 9px 20px;
+    border-radius: 100px;
+    background: var(--sage);
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 6px 18px rgba(90, 107, 76, 0.25);
+    transition: transform 0.16s ease, background 0.16s ease;
+  }
+  .nav-dash-btn:hover { background: var(--sage-dark); transform: translateY(-1px); }
 
   main { position: relative; z-index: 1; }
 
   /* ── HERO ── */
   .hero {
     padding: 150px 48px 70px;
-    max-width: 760px;
+    max-width: 780px;
   }
-  .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--amber); margin-bottom: 22px; }
+  .hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--maroon); margin-bottom: 22px; }
   .hero-headline {
     font-family: 'DM Sans', sans-serif; font-size: clamp(44px, 6vw, 72px);
-    font-weight: 600; line-height: 1.0; letter-spacing: -2px; color: var(--dark); margin-bottom: 24px;
+    font-weight: 600; line-height: 1.0; letter-spacing: -2px; color: var(--maroon-deep); margin-bottom: 24px;
   }
   .hero-headline em { font-family: 'DM Serif Display', serif; font-style: italic; font-weight: 400; color: var(--maroon); letter-spacing: -1.5px; }
   .hero-sub { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 18px; color: var(--muted); max-width: 520px; line-height: 1.55; margin-bottom: 32px; }
 
-  .hero-cta-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-  .hero-cta-row .submit-btn { padding: 14px 30px; font-size: 14px; width: auto; display: inline-flex; }
+  .hero-cta-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+
+  .btn-sage {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 700;
+    padding: 14px 28px;
+    background: var(--sage); color: white;
+    border: none; border-radius: 100px; cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 8px 22px rgba(90, 107, 76, 0.28);
+    transition: transform 0.18s, background 0.18s, box-shadow 0.18s;
+  }
+  .btn-sage:hover { background: var(--sage-dark); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(90, 107, 76, 0.34); }
+
+  .btn-crimson-outline {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 700;
+    padding: 14px 26px;
+    background: rgba(255, 255, 255, 0.72); color: var(--maroon);
+    border: 1.5px solid rgba(168, 40, 76, 0.3); border-radius: 100px; cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.18s, background 0.18s;
+  }
+  .btn-crimson-outline:hover { background: white; transform: translateY(-2px); }
+
   .hero-scroll-link {
     font-size: 13.5px; font-weight: 600; color: var(--muted);
     display: flex; align-items: center; gap: 6px;
     background: none; border: none; cursor: pointer;
     font-family: 'DM Sans', sans-serif;
+    padding: 8px 4px;
     transition: color 0.18s;
   }
-  .hero-scroll-link:hover { color: var(--dark); }
+  .hero-scroll-link:hover { color: var(--maroon); }
 
   @media (max-width: 880px) {
     .hero { padding: 130px 22px 40px; }
@@ -93,7 +141,7 @@
 
   /* ── SECTION GENERIC ── */
   .section { padding: 70px 48px; }
-  .section-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--sage); margin-bottom: 18px; }
+  .section-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--maroon); margin-bottom: 18px; }
   .wallet-section-label {
     font-family: 'DM Sans', sans-serif;
     font-size: 17px; font-weight: 700; letter-spacing: 0.2px;
@@ -108,8 +156,8 @@
     border-radius: 50%;
     background: var(--maroon);
   }
-  .section-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(28px, 3.4vw, 40px); line-height: 1.15; color: var(--dark); margin-bottom: 16px; max-width: 480px; }
-  .section-desc { font-size: 15px; color: var(--muted); max-width: 480px; line-height: 1.7; margin-bottom: 0; }
+  .section-title { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(28px, 3.4vw, 40px); line-height: 1.15; color: var(--maroon-deep); margin-bottom: 16px; max-width: 480px; }
+  .section-desc { font-size: 15px; color: var(--muted); max-width: 480px; line-height: 1.7; margin-bottom: 24px; }
 
   /* ── WALLET INTRO + BOARD, SIDE BY SIDE ── */
   .wallet-layout {
@@ -127,12 +175,14 @@
 
   /* ── WALLET VISUAL ── */
   .wallet-board {
-    background: rgba(255,255,255,0.45);
-    border: 1px solid rgba(122,140,106,0.18);
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(168,40,76,0.18);
     border-radius: 28px;
     padding: 36px;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 18px 46px rgba(122,24,50,0.08);
   }
 
   .wallet-balance-row {
@@ -140,10 +190,10 @@
     flex-wrap: wrap; gap: 16px;
     margin-bottom: 44px;
     padding-bottom: 32px;
-    border-bottom: 1px dashed rgba(122,140,106,0.3);
+    border-bottom: 1px dashed rgba(168,40,76,0.25);
   }
-  .wallet-balance-label { font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--sage); margin-bottom: 8px; }
-  .wallet-balance-num { font-family: 'DM Sans', sans-serif; font-size: 48px; font-weight: 600; letter-spacing: -2px; color: var(--dark); }
+  .wallet-balance-label { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--maroon); margin-bottom: 8px; }
+  .wallet-balance-num { font-family: 'DM Sans', sans-serif; font-size: 48px; font-weight: 600; letter-spacing: -2px; color: var(--maroon-deep); }
   .wallet-balance-sub { font-size: 13px; color: var(--muted); margin-top: 6px; }
 
   .wallet-pill {
@@ -151,9 +201,9 @@
     padding: 8px 16px;
     border-radius: 100px;
     font-size: 12.5px; font-weight: 600;
-    background: rgba(175,169,236,0.16);
-    color: #5A52A8;
-    border: 1px solid rgba(175,169,236,0.35);
+    background: rgba(168,40,76,0.10);
+    color: var(--maroon);
+    border: 1px solid rgba(168,40,76,0.24);
   }
 
   .flow-cols {
@@ -175,15 +225,15 @@
     font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
     margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
   }
-  .flow-col-title.in { color: #1C7A5C; }
+  .flow-col-title.in { color: var(--sage-dark); }
   .flow-col-title.out { color: var(--maroon); }
   .flow-col-title .dot { width: 7px; height: 7px; border-radius: 50%; }
-  .flow-col-title.in .dot { background: var(--teal); }
+  .flow-col-title.in .dot { background: var(--sage); }
   .flow-col-title.out .dot { background: var(--maroon); }
 
   .flow-divider {
     width: 1px;
-    background: rgba(122,140,106,0.22);
+    background: rgba(168,40,76,0.18);
     align-self: stretch;
   }
 
@@ -194,14 +244,14 @@
     border-radius: 14px;
     margin-bottom: 10px;
     font-size: 13.5px;
-    background: rgba(255,255,255,0.55);
-    border: 1px solid rgba(122,140,106,0.12);
+    background: rgba(255,255,255,0.75);
+    border: 1px solid rgba(168,40,76,0.12);
   }
   .flow-line-label { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
   .flow-line-name { font-weight: 600; color: var(--dark); overflow-wrap: break-word; }
   .flow-line-meta { font-size: 11.5px; color: var(--muted); overflow-wrap: break-word; }
-  .flow-line-amt { font-weight: 600; white-space: nowrap; flex-shrink: 0; }
-  .flow-line-amt.in { color: #1C7A5C; }
+  .flow-line-amt { font-weight: 700; white-space: nowrap; flex-shrink: 0; }
+  .flow-line-amt.in { color: var(--sage-dark); }
   .flow-line-amt.out { color: var(--maroon); }
 
   @media (max-width: 760px) {
@@ -211,29 +261,31 @@
   /* ── MONTHLY SUMMARY STRIP ── */
   .summary-strip {
     display: flex; margin-top: 36px;
-    border-top: 1px solid rgba(122,140,106,0.18);
+    border-top: 1px solid rgba(168,40,76,0.16);
     padding-top: 28px;
     gap: 0;
     flex-wrap: wrap;
   }
   .summary-cell { flex: 1; min-width: 150px; padding-right: 24px; }
-  .summary-num { font-family: 'DM Sans', sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -1px; color: var(--dark); }
+  .summary-num { font-family: 'DM Sans', sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -1px; color: var(--maroon-deep); }
   .summary-label { font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
 
-  /* ── APPLICATION FORM ── */
+  /* ── APPLICATION FORM (INVERTED CRIMSON MAJOR + SAGE GREEN MINOR) ── */
   .apply-board {
-    background: var(--dark);
+    background: linear-gradient(135deg, var(--maroon-dark) 0%, var(--maroon) 100%);
     border-radius: 28px;
     padding: 56px;
     color: white;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 24px 60px rgba(122,24,50,0.24);
   }
   .apply-board::before {
     content: '';
     position: absolute; inset: -50%;
-    background: radial-gradient(circle at 25% 30%, rgba(250,199,117,0.12), transparent 55%),
-                radial-gradient(circle at 75% 70%, rgba(93,202,165,0.1), transparent 55%);
+    background: radial-gradient(circle at 25% 30%, rgba(250,199,117,0.16), transparent 55%),
+                radial-gradient(circle at 75% 70%, rgba(122,140,106,0.18), transparent 55%);
+    pointer-events: none;
   }
   .apply-grid { position: relative; display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; }
 
@@ -242,41 +294,43 @@
     font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(28px,3.4vw,38px);
     color: white; line-height: 1.2; margin-bottom: 16px;
   }
-  .apply-left p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 28px; }
+  .apply-left p { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 28px; }
 
   .apply-checklist { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-  .apply-checklist li { display: flex; gap: 10px; font-size: 13.5px; color: rgba(255,255,255,0.75); }
-  .apply-checklist .check { color: var(--teal); flex-shrink: 0; }
+  .apply-checklist li { display: flex; gap: 10px; font-size: 13.5px; color: rgba(255,255,255,0.88); }
+  .apply-checklist .check { color: #B9D3A6; font-weight: 700; flex-shrink: 0; }
 
   .form-grid { position: relative; display: flex; flex-direction: column; gap: 16px; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .field label { display: block; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 7px; letter-spacing: 0.2px; }
+  .field label { display: block; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); margin-bottom: 7px; letter-spacing: 0.2px; }
   .field input, .field select {
     width: 100%;
     font-family: 'DM Sans', sans-serif; font-size: 14px;
     padding: 12px 14px;
     border-radius: 12px;
-    border: 1.5px solid rgba(255,255,255,0.16);
-    background: rgba(255,255,255,0.06);
+    border: 1.5px solid rgba(255,255,255,0.22);
+    background: rgba(255,255,255,0.10);
     color: white;
     outline: none;
     transition: border-color 0.18s, background 0.18s;
   }
-  .field input::placeholder { color: rgba(255,255,255,0.32); }
-  .field input:focus, .field select:focus { border-color: var(--amber); background: rgba(255,255,255,0.1); }
-  .field select option { background: var(--dark); color: white; }
+  .field input::placeholder { color: rgba(255,255,255,0.45); }
+  .field input:focus, .field select:focus { border-color: #B9D3A6; background: rgba(255,255,255,0.16); }
+  .field select option { background: var(--maroon-dark); color: white; }
 
   .submit-btn {
     margin-top: 6px;
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    font-size: 15px; font-weight: 600;
-    padding: 15px 0;
-    background: var(--amber); color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 700;
+    padding: 15px 28px;
+    background: var(--sage); color: white;
     border: none; border-radius: 100px; cursor: pointer;
     text-decoration: none;
-    transition: transform 0.18s, box-shadow 0.18s;
+    box-shadow: 0 8px 22px rgba(28, 34, 33, 0.22);
+    transition: transform 0.18s, background 0.18s, box-shadow 0.18s;
   }
-  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.25); }
+  .submit-btn:hover { background: var(--sage-dark); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.25); }
   .submit-btn:disabled { opacity: 0.55; cursor: default; transform: none; box-shadow: none; }
 
   .form-banner {
@@ -284,7 +338,7 @@
     font-size: 13px; padding: 12px 16px; border-radius: 12px; line-height: 1.5;
   }
   .form-banner.show { display: block; }
-  .form-banner.success { background: rgba(93,202,165,0.16); color: #9FE8CC; border: 1px solid rgba(93,202,165,0.3); }
+  .form-banner.success { background: rgba(122,140,106,0.28); color: #E8F5DF; border: 1px solid rgba(185,211,166,0.45); }
 
   @media (max-width: 880px) {
     .apply-grid { grid-template-columns: 1fr; }
@@ -309,7 +363,10 @@
 
 <nav>
   <a class="logo" href="index.html"><span>crow</span><span>nd</span></a>
-  <a class="nav-back" href="index.html">← Back to home</a>
+  <div class="nav-actions">
+    <a class="nav-back" href="index.html">← Back to home</a>
+    <a class="nav-dash-btn" href="brand-dashboard.html">Go to Dashboard →</a>
+  </div>
 </nav>
 
 <main>
@@ -320,7 +377,8 @@
     <h1 class="hero-headline">See where every<br><em>rupee goes</em><br>before you commit.</h1>
     <p class="hero-sub">Your budget funds verified cashback, not impressions. Here's exactly how money moves through your Crownd wallet, and how to get started.</p>
     <div class="hero-cta-row">
-      <a href="#apply" class="submit-btn" style="background:var(--dark); color:white;">Partner Now →</a>
+      <a href="#apply" class="btn-sage">Partner Now →</a>
+      <a href="brand-dashboard.html" class="btn-crimson-outline">Go to Dashboard →</a>
       <button class="hero-scroll-link" onclick="document.getElementById('wallet').scrollIntoView({behavior:'smooth'})">↓ Take a look of how your wallet will look like</button>
     </div>
   </section>
@@ -332,6 +390,7 @@
         <div class="wallet-section-label">Your Brand Wallet</div>
         <h2 class="section-title">A live ledger, not a black box.</h2>
         <p class="section-desc">When you partner with Crownd, you pre-commit a monthly budget. We hold it, disburse cashback only against verified purchases and posts, and you can see every rupee in and out — in real time.</p>
+        <a href="brand-dashboard.html" class="btn-sage" style="margin-top: 8px;">Go to Dashboard →</a>
       </div>
 
       <div class="wallet-board">
@@ -438,10 +497,13 @@
           <p>Tell us a bit about your brand and which tier fits. Our team reaches out within 24 hours to get your budget, cashback rules, and partner page live.</p>
           <ul class="apply-checklist">
             <li><span class="check">✓</span> No setup fees, no long-term lock-in</li>
-            <li><span class="check">✓</span> Choose Coronet, Regalia, or Sovereign</li>
+            <li><span class="check">✓</span> Choose Crown, Throne, or Empire</li>
             <li><span class="check">✓</span> Set your own cashback %, caps, and rules</li>
             <li><span class="check">✓</span> Go live the same week</li>
           </ul>
+          <div style="margin-top: 28px;">
+            <a href="brand-dashboard.html" class="btn-sage">Go to Dashboard →</a>
+          </div>
         </div>
 
         <form class="form-grid" id="partnerForm" onsubmit="handlePartnerSubmit(event)">
@@ -474,9 +536,9 @@
               <label for="tier">Preferred tier</label>
               <select id="tier" required>
                 <option value="">Select a tier</option>
-                <option value="coronet">Coronet — Cashback campaigns</option>
-                <option value="regalia">Regalia — Product seeding</option>
-                <option value="sovereign">Sovereign — Curated collaborations</option>
+                <option value="coronet">Crown — Cashback campaigns</option>
+                <option value="regalia">Throne — Product seeding</option>
+                <option value="sovereign">Empire — Curated collaborations</option>
                 <option value="unsure">Not sure yet</option>
               </select>
             </div>
@@ -504,10 +566,8 @@
     btn.disabled = true;
     btn.textContent = 'Submitting…';
 
-    // No live brand-application endpoint in the current API spec —
-    // this captures the request locally and confirms to the user.
     setTimeout(() => {
-      banner.textContent = `Thanks${brandName ? ', ' + brandName : ''} — our partnerships team will reach out within 24 hours to set up your wallet.`;
+      banner.innerHTML = `Thanks${brandName ? ', ' + brandName : ''} — our partnerships team will reach out within 24 hours to set up your wallet. <a href="brand-dashboard.html" style="color:#FAC775;font-weight:700;margin-left:6px;text-decoration:underline;">Go to Dashboard →</a>`;
       banner.className = 'form-banner show success';
       btn.disabled = false;
       btn.textContent = 'Partner Now →';
