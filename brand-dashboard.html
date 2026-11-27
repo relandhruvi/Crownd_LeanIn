@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crownd — Brand Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --crimson: #A82A4E;
+      --crimson-dark: #6F1A32;
+      --crimson-soft: #FADCE4;
+      --crimson-blush: #FDF1F4;
+      --sage: #7A9168;
+      --sage-dark: #4D613E;
+      --gold: #F9C774;
+      --ink: #1C2321;
+      --muted: #5D3A44;
+      --line: rgba(168, 42, 78, 0.16);
+      --card-bg: rgba(255, 255, 255, 0.90);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(135deg, #FADCE4 0%, #FDF1F4 48%, #F5CCD7 100%);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .halo-tr {
+      position: fixed; top: -140px; right: -120px; width: 460px; height: 460px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(168, 42, 78, 0.28) 0%, rgba(168, 42, 78, 0) 70%);
+      pointer-events: none; z-index: 0;
+    }
+
+    .halo-bl {
+      position: fixed; bottom: -160px; left: -120px; width: 420px; height: 420px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(111, 26, 50, 0.20) 0%, rgba(111, 26, 50, 0) 70%);
+      pointer-events: none; z-index: 0;
+    }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .wordmark {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .wordmark-text {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 30px;
+      color: var(--crimson);
+      letter-spacing: -0.5px;
+    }
+
+    .wordmark-text span { color: var(--sage); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--crimson-dark);
+      padding: 9px 16px;
+      border-radius: 999px;
+      transition: background 0.2s ease;
+    }
+    .nav-link:hover { background: rgba(168, 42, 78, 0.10); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-sage { background: var(--sage); color: #fff; box-shadow: 0 8px 20px rgba(77, 97, 62, 0.28); }
+    .btn-sage:hover { background: var(--sage-dark); }
+    .btn-crimson { background: var(--crimson); color: #fff; }
+    .btn-outline { background: rgba(255,255,255,0.88); color: var(--crimson-dark); border: 1.5px solid rgba(168,42,78,0.28); }
+
+    .display-h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: clamp(30px, 4.2vw, 46px);
+      line-height: 1.12;
+      color: var(--crimson-dark);
+    }
+
+    .display-h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 26px;
+      color: var(--crimson-dark);
+      margin-bottom: 8px;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    .pill-crimson { background: rgba(168,42,78,0.14); color: var(--crimson); }
+    .pill-sage { background: rgba(122,145,104,0.20); color: var(--sage-dark); }
+    .pill-gold { background: rgba(249,199,116,0.28); color: #8A5B00; }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid rgba(168, 42, 78, 0.18);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 12px 32px rgba(111, 26, 50, 0.06);
+    }
+
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; margin-bottom: 30px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 20px; margin-bottom: 30px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 22px; margin-bottom: 30px; }
+
+    .stat-big {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 40px;
+      color: var(--crimson);
+      line-height: 1.05;
+      margin: 8px 0;
+    }
+
+    .progress-track {
+      width: 100%; height: 11px; background: rgba(255,255,255,0.22); border-radius: 999px; overflow: hidden; margin: 10px 0;
+    }
+    .progress-fill { height: 100%; background: var(--sage); border-radius: 999px; transition: width 0.3s ease; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th {
+      text-align: left; padding: 12px 14px; font-size: 11px; text-transform: uppercase;
+      letter-spacing: 0.7px; color: var(--crimson-dark); border-bottom: 1.5px solid var(--line);
+    }
+    td { padding: 13px 14px; border-bottom: 1px solid rgba(168,42,78,0.10); vertical-align: middle; }
+    tr:hover td { background: rgba(250,220,228,0.32); }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 24px 0 40px;
+      margin-top: 36px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .footer a { color: var(--crimson-dark); text-decoration: none; font-weight: 600; margin-right: 16px; }
+  </style>
+</head>
+<body>
+  <div class="halo-tr"></div>
+  <div class="halo-bl"></div>
+
+  <div class="container">
+    <nav class="nav">
+      <a href="index.html" class="wordmark">
+        <svg width="26" height="22" viewBox="0 0 28 24" fill="none">
+          <path d="M2.5 18.5L4.5 7.5L10.2 12.5L14 5L17.8 12.5L23.5 7.5L25.5 18.5H2.5Z" fill="#A82A4E"/>
+          <rect x="3" y="20" width="22" height="2.2" rx="1.1" fill="#A82A4E"/>
+          <circle cx="4.5" cy="5.5" r="1.7" fill="#7A9168"/>
+          <circle cx="14" cy="3.5" r="2" fill="#7A9168"/>
+          <circle cx="23.5" cy="5.5" r="1.7" fill="#7A9168"/>
+        </svg>
+        <span class="wordmark-text">crow<span>nd</span></span>
+      </a>
+
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Creators</a>
+        <a href="partner.html" class="nav-link">← Back to Brand Page</a>
+        <a href="#budget" class="nav-link">Budget</a>
+        <a href="#library" class="nav-link">Content Library</a>
+        <a href="#creators" class="nav-link">Creators</a>
+        <button class="btn btn-sage" onclick="addDemoBudget()">+ Add ₹10,000 Demo Budget</button>
+      </div>
+    </nav>
+
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 14px; margin-bottom: 24px;">
+      <div>
+        <span class="pill pill-crimson" style="margin-bottom: 8px;">Brand Command Center</span>
+        <h1 class="display-h1">Velvet Botanics — Brand Dashboard</h1>
+        <p style="color: var(--muted); margin-top: 6px; font-size: 15px;">
+          Consistent pilot figures: ₹50,000 budget • 20% cashback • 10% Crownd commission • ₹4,000 agency post benchmark.
+        </p>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <a href="partner.html" class="btn btn-outline">← Brand Page</a>
+        <button class="btn btn-sage" onclick="addDemoBudget()">+ Top Up Budget</button>
+      </div>
+    </div>
+
+    <!-- 4 Top KPIs -->
+    <section id="budget" class="grid-4">
+      <div class="card" style="background: linear-gradient(135deg, #6F1A32 0%, #A82A4E 100%); color: #fff;">
+        <span class="pill" style="background: rgba(249,199,116,0.22); color: #F9C774;">1. Budget Remaining</span>
+        <div class="stat-big" style="color: #fff;" id="kpi-remaining">₹45,500</div>
+        <div class="progress-track"><div class="progress-fill" id="kpi-bar" style="width: 91%;"></div></div>
+        <p style="font-size: 12px; color: #F8D5DF;" id="kpi-budget-sub">₹4,500 spent of ₹50,000 monthly pool</p>
+      </div>
+
+      <div class="card">
+        <span class="pill pill-sage">2. Verified Posts</span>
+        <div class="stat-big" id="kpi-posts">5 <span style="font-size: 20px; color: var(--muted);">/ 6</span></div>
+        <p style="font-size: 13px; color: var(--muted);" id="kpi-posts-sub">5 verified live posts (1 pending review). You pay only for verified posts.</p>
+      </div>
+
+      <div class="card">
+        <span class="pill pill-crimson">3. Cost / Verified Post</span>
+        <div class="stat-big" id="kpi-cpp">₹900</div>
+        <p style="font-size: 13px; color: var(--sage-dark); font-weight: 700;" id="kpi-savings">78% cheaper than ₹4,000 agency avg</p>
+      </div>
+
+      <div class="card">
+        <span class="pill pill-gold">4. Est. Reach & Eng.</span>
+        <div class="stat-big" id="kpi-reach">47.2K</div>
+        <p style="font-size: 13px; color: var(--muted);">5.2% avg engagement (Phase 1 public profile estimate)</p>
+      </div>
+    </section>
+
+    <!-- Spend Ledger + Sales Attribution -->
+    <section class="grid-2">
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h2 class="display-h2" style="margin: 0; font-size: 22px;">Rupee-by-rupee spend ledger</h2>
+          <span class="pill pill-sage">Traceable</span>
+        </div>
+        <table>
+          <tbody>
+            <tr><td>Monthly Campaign Budget</td><td style="text-align:right;font-weight:700;" id="td-deposit">₹50,000</td></tr>
+            <tr><td>Verified Creator Purchases (GMV)</td><td style="text-align:right;font-weight:700;" id="td-gmv">₹15,000</td></tr>
+            <tr><td>Creator Cashback Paid (20%)</td><td style="text-align:right;font-weight:700;color:var(--crimson);" id="td-cb">- ₹3,000</td></tr>
+            <tr><td>Crownd Commission on Verified Sales (10%)</td><td style="text-align:right;font-weight:700;color:var(--crimson);" id="td-comm">- ₹1,500</td></tr>
+            <tr><td>Upfront Agency / Creator Retainers</td><td style="text-align:right;font-weight:700;color:var(--sage-dark);">₹0</td></tr>
+            <tr style="background: rgba(122,145,104,0.15);">
+              <td style="font-weight:700;">Remaining Escrow Balance</td>
+              <td style="text-align:right;font-weight:700;color:var(--sage-dark);font-size:16px;" id="td-rem">₹45,500</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card" style="background: rgba(255,245,247,0.95);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h2 class="display-h2" style="margin: 0; font-size: 22px;">5. Sales attribution</h2>
+          <span class="pill pill-gold">Phase 2 Coming Soon</span>
+        </div>
+        <p style="font-size: 14px; line-height: 1.6; color: var(--muted); margin-bottom: 14px;">
+          In Phase 1, Crownd tracks <strong>direct verified creator purchases</strong> (<span id="attr-summary">5 orders • ₹15,000 GMV</span>). Follower-driven referral sales unlock once creator promo codes and UTM links go live.
+        </p>
+        <div style="background: #fff; border: 1px dashed rgba(168,42,78,0.35); border-radius: 16px; padding: 14px;">
+          <div style="font-weight: 700; font-size: 13px; color: var(--crimson-dark); margin-bottom: 4px;">
+            Creator Referral Codes (e.g. AANYA15) — In Roadmap
+          </div>
+          <p style="font-size: 13px; color: var(--muted);">
+            Downstream audience checkouts using creator codes will appear automatically here in Phase 2.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Content Library -->
+    <section id="library" style="margin-bottom: 30px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 14px;">
+        <div>
+          <span class="pill pill-sage" style="margin-bottom: 6px;">6. Brand Content Library</span>
+          <h2 class="display-h2" style="margin: 0;">Verified posts ready to reuse</h2>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn btn-crimson" style="padding: 7px 14px; font-size: 12px;" onclick="setFilter('all')">All</button>
+          <button class="btn btn-outline" style="padding: 7px 14px; font-size: 12px;" onclick="setFilter('Reel')">Reels</button>
+          <button class="btn btn-outline" style="padding: 7px 14px; font-size: 12px;" onclick="setFilter('Feed Post')">Feed Posts</button>
+        </div>
+      </div>
+      <div class="grid-3" id="library-grid"></div>
+    </section>
+
+    <!-- 7. Creator Roster -->
+    <section id="creators" class="card">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+        <div>
+          <span class="pill pill-crimson" style="margin-bottom: 6px;">7. Creator Roster</span>
+          <h2 class="display-h2" style="margin: 0;">Who posted & how they performed</h2>
+        </div>
+        <span style="font-size: 12px; font-weight: 600; color: var(--muted);">
+          Tier thresholds (out of 750): Crown 300+ • Throne 500+ • Empire 650+
+        </span>
+      </div>
+      <div style="overflow-x: auto; margin-top: 14px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Creator</th>
+              <th>Tier</th>
+              <th>Crownd Score</th>
+              <th>Followers</th>
+              <th>Est. Eng.</th>
+              <th>Order & Cashback</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="roster-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>
+        <a href="index.html">Creators</a>
+        <a href="partner.html">For Brands</a>
+        <a href="#budget">Budget</a>
+        <a href="#library">Content Library</a>
+      </div>
+      <div>Crownd Brand Dashboard • 80% lower campaign cost vs agencies • Real 1K+ creators</div>
+    </footer>
+  </div>
+
+  <script>
+    const state = {
+      deposit: 50000,
+      agencyBenchmark: 4000,
+      filter: "all",
+      posts: [
+        { id: 1, name: "Aanya Sharma", handle: "@aanyabeauty", tier: "Throne", score: 630, followers: "24.8K", reach: 10400, eng: "5.4%", format: "Reel", order: 3200, verified: true, day7: true, caption: "Honest 7-day barrier serum texture test under SPF." },
+        { id: 2, name: "Rohan Verma", handle: "@rohanstyles", tier: "Throne", score: 592, followers: "18.2K", reach: 7600, eng: "4.9%", format: "Feed Post", order: 2800, verified: true, day7: true, caption: "Morning grooming lineup featuring the botanical cleanser." },
+        { id: 3, name: "Meera Nair", handle: "@meeraglows", tier: "Crown", score: 465, followers: "6.4K", reach: 2900, eng: "6.1%", format: "Reel", order: 2400, verified: true, day7: true, caption: "What I actually reordered this month with my own money." },
+        { id: 4, name: "Kabir Malhotra", handle: "@kabirfit", tier: "Empire", score: 710, followers: "58.0K", reach: 24200, eng: "4.2%", format: "Reel", order: 4500, verified: true, day7: false, caption: "Post-run recovery & skin hydration essentials." },
+        { id: 5, name: "Tara Kapoor", handle: "@taraliving", tier: "Crown", score: 420, followers: "4.9K", reach: 2100, eng: "5.2%", format: "Feed Post", order: 2100, verified: true, day7: false, caption: "Minimalist shelfie in natural morning light." },
+        { id: 6, name: "Devika Sen", handle: "@devikaedits", tier: "Throne", score: 555, followers: "14.1K", reach: 5900, eng: "4.5%", format: "Reel", order: 2600, verified: false, day7: false, caption: "Awaiting manual public profile & brand tag verification." }
+      ]
+    };
+
+    const inr = (n) => "₹" + Math.round(n).toLocaleString("en-IN");
+
+    function render() {
+      const verified = state.posts.filter(p => p.verified);
+      const gmv = verified.reduce((s, p) => s + p.order, 0);
+      const cb = gmv * 0.20;
+      const comm = gmv * 0.10;
+      const spent = cb + comm;
+      const rem = state.deposit - spent;
+      const cpp = verified.length ? spent / verified.length : 0;
+      const savings = Math.round(((state.agencyBenchmark - cpp) / state.agencyBenchmark) * 100);
+      const reach = verified.reduce((s, p) => s + p.reach, 0);
+
+      document.getElementById("kpi-remaining").textContent = inr(rem);
+      document.getElementById("kpi-bar").style.width = Math.min(100, Math.round((rem / state.deposit) * 100)) + "%";
+      document.getElementById("kpi-budget-sub").textContent = `${inr(spent)} spent of ${inr(state.deposit)} monthly pool`;
+      document.getElementById("kpi-posts").innerHTML = `${verified.length} <span style="font-size:20px;color:var(--muted);">/ ${state.posts.length}</span>`;
+      document.getElementById("kpi-posts-sub").textContent = `${verified.length} verified live posts (${state.posts.length - verified.length} pending review). You pay only for verified posts.`;
+      document.getElementById("kpi-cpp").textContent = inr(cpp);
+      document.getElementById("kpi-savings").textContent = `${savings}% cheaper than ₹4,000 agency avg`;
+      document.getElementById("kpi-reach").textContent = (reach / 1000).toFixed(1) + "K";
+
+      document.getElementById("td-deposit").textContent = inr(state.deposit);
+      document.getElementById("td-gmv").textContent = inr(gmv);
+      document.getElementById("td-cb").textContent = "- " + inr(cb);
+      document.getElementById("td-comm").textContent = "- " + inr(comm);
+      document.getElementById("td-rem").textContent = inr(rem);
+      document.getElementById("attr-summary").textContent = `${verified.length} orders • ${inr(gmv)} GMV`;
+
+      const shown = state.filter === "all" ? verified : verified.filter(p => p.format === state.filter);
+      document.getElementById("library-grid").innerHTML = shown.map(p => `
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+            <span class="pill pill-crimson">${p.format}</span>
+            <span class="pill pill-sage">${p.day7 ? "Day-7 Verified ✓" : "Live Verified ✓"}</span>
+          </div>
+          <div style="font-weight:700;color:var(--crimson-dark);">${p.name} (${p.handle})</div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:8px;">${p.tier} • Score ${p.score}/750 • ${p.followers} followers</div>
+          <p style="font-size:13px;background:#FFF5F7;padding:10px;border-radius:12px;">"${p.caption}"</p>
+        </div>
+      `).join("");
+
+      document.getElementById("roster-body").innerHTML = state.posts.map(p => `
+        <tr>
+          <td><strong>${p.name}</strong><div style="font-size:12px;color:var(--muted);">${p.handle}</div></td>
+          <td><span class="pill pill-crimson">${p.tier}</span></td>
+          <td style="font-weight:700;color:var(--crimson-dark);">${p.score} <span style="font-weight:400;color:var(--muted);">/ 750</span></td>
+          <td>${p.followers}</td>
+          <td>${p.eng}</td>
+          <td><strong>${inr(p.order)}</strong> <span style="font-size:12px;color:var(--sage-dark);">(${inr(p.order * 0.2)} cb)</span></td>
+          <td>${p.verified ? '<span class="pill pill-sage">Verified</span>' : `<button class="btn btn-sage" style="padding:5px 12px;font-size:12px;" onclick="approve(${p.id})">Approve</button>`}</td>
+        </tr>
+      `).join("");
+    }
+
+    function setFilter(f) { state.filter = f; render(); }
+    function approve(id) { const p = state.posts.find(x => x.id === id); if (p) { p.verified = true; render(); } }
+    function addDemoBudget() { state.deposit += 10000; render(); }
+
+    render();
+  </script>
+</body>
+</html>
